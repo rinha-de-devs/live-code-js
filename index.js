@@ -1,21 +1,21 @@
 const fastify = require('fastify')({ logger: true })
-const Repositorio = require('./repositorio')
-const repositorio = new Repositorio()
-const CervejaService = require('./servico')
-const cervejaService = new CervejaService(repositorio)
+const ServicoCerveja = require('./servico')
+const RepositorioCerveja = require('./repositorio')
+const repositorioCerveja = new RepositorioCerveja()
+const servicoCerveja = new ServicoCerveja(repositorioCerveja)
 
 
 fastify.get('/cervejas', async (request, reply) => {
-  return cervejas
+  return servicoCerveja.buscarCervejas()
 })
 
-fastify.get('/cerveja/:nome', async(req, resp) => {
-    const nomeDaCerveja = req.params.nome
+fastify.get('/cerveja/:id', async(req, resp) => {
+    const id = req.params.id
 
-    const cerveja = cervejas.find(elem => elem.nome === nomeDaCerveja)
+    const cerveja = servicoCerveja.buscarCervejaPorId(id)
 
     if(!cerveja){
-        const msg = {"message": `Cerveja ${nomeDaCerveja} nao foi encontrada`}
+        const msg = {"message": `Cerveja id: ${id} nao foi encontrada`}
         resp.code(404).send(msg)
     }
 
@@ -25,12 +25,7 @@ fastify.get('/cerveja/:nome', async(req, resp) => {
 fastify.post('/cerveja', async(req, res) => {
     const cerveja = req.body
 
-    if(cerveja?.nome || cerveja?.tipo || cerveja?.quantidade <= 0){
-        const msg = {msg: "ERRRRROOOOOUUUUU"}
-        res.code(400).send(msg)
-    }
-
-    cervejas.push(cerveja)
+    servicoCerveja.inserirCerveja(cerveja)
 
     res.code(201).send(cerveja)
 })
