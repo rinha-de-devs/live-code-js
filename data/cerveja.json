@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nome": "Bud",
+        "tipo": "Larger",
+        "quantidade": 10
+    },
+    {
+        "id": 2,
+        "nome": "Skol",
+        "tipo": "Pilsen",
+        "quantidade": 15
+    },
+    {
+        "id": 3,
+        "nome": "Coruja",
+        "tipo": "IPA",
+        "quantidade": 5
+    }
+]

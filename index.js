@@ -1,22 +1,9 @@
 const fastify = require('fastify')({ logger: true })
+const Repositorio = require('./repositorio')
+const repositorio = new Repositorio()
+const CervejaService = require('./servico')
+const cervejaService = new CervejaService(repositorio)
 
-const cervejas = [
-    {
-        "nome": "Bud",
-        "tipo": "Larger",
-        "quantidade": 10
-    },
-    {
-        "nome": "Skol",
-        "tipo": "Pilsen",
-        "quantidade": 15
-    },
-    {
-        "nome": "Coruja",
-        "tipo": "IPA",
-        "quantidade": 5
-    }
-]
 
 fastify.get('/cervejas', async (request, reply) => {
   return cervejas
