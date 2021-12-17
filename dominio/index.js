@@ -7,3 +7,5 @@ class Cerveja {
         this.quantidade = quantidade
     }
 }
+
+module.exports = Cerveja

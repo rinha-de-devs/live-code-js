@@ -40,3 +40,5 @@ class ServicoCerveja {
         return Error('Erro na exclusão da cerveja')
     }
 }
+
+module.exports = ServicoCerveja

@@ -25,9 +25,27 @@ fastify.get('/cerveja/:id', async(req, resp) => {
 fastify.post('/cerveja', async(req, res) => {
     const cerveja = req.body
 
-    servicoCerveja.inserirCerveja(cerveja)
+    const cervejaNome = servicoCerveja.inserirCerveja(cerveja)
 
-    res.code(201).send(cerveja)
+    res.code(201).send({"nome": cervejaNome})
+})
+
+fastify.put('/cerveja/:id', async(req, res) => {
+  const cerveja = req.body
+  const id = req.params.id
+  cerveja.id = parseInt(id)
+
+  console.log(cerveja)
+  const cervejaAtualizada = servicoCerveja.alterarCerveja(cerveja)
+  res.code(200).send(cervejaAtualizada)
+})
+
+fastify.delete('/cerveja/:id', async(req, res) =>{
+  const id = req.params.id
+
+  const mensagem = servicoCerveja.excluirCerveja(id)
+
+  res.code(200).send(mensagem)
 })
 
 const start = async () => {
