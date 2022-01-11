@@ -1,8 +1,12 @@
 const fastify = require('fastify')({ logger: true })
 const ServicoCerveja = require('./servico')
-const RepositorioCerveja = require('./repositorio')
+
+const RepositorioCerveja = require('./repositorio/bancoMemoria')
+const CassandraRepositorio = require('./repositorio/cassandraRepositorio')
+const cassandraRepositorio = new CassandraRepositorio()
 const repositorioCerveja = new RepositorioCerveja()
-const servicoCerveja = new ServicoCerveja(repositorioCerveja)
+
+const servicoCerveja = new ServicoCerveja(cassandraRepositorio)
 
 
 fastify.get('/cervejas', async (request, reply) => {

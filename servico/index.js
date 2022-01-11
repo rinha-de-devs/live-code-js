@@ -7,7 +7,7 @@ class ServicoCerveja {
     }
 
     inserirCerveja(cerveja){
-        const cervejaPraSalvar = new Cerveja(Math.floor(Math.random() * 100), cerveja.nome, cerveja.tipo, cerveja.quantidade)
+        const cervejaPraSalvar = new Cerveja(cerveja.sku, cerveja.nome, cerveja.tipo, cerveja.quantidade)
         this.repositorio.inserir(cervejaPraSalvar)
         return cervejaPraSalvar.nome
     }

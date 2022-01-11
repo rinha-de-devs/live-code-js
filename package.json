@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cassandra-driver": "^4.6.3",
     "fastify": "^3.24.1"
   },
   "devDependencies": {

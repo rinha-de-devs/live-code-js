@@ -1,7 +1,7 @@
 class Cerveja {
 
-    constructor(id, nome, tipo, quantidade){
-        this.id = id
+    constructor(sku, nome, tipo, quantidade){
+        this.sku = sku
         this.nome = nome
         this.tipo = tipo
         this.quantidade = quantidade
