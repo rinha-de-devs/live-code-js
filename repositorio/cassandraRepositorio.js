@@ -22,6 +22,12 @@ class CassandraRepositorio {
         const resultado = await this.client.execute(query, [cerveja.sku, cerveja.nome, cerveja.tipo, cerveja.quantidade], {prepare: true})
         return resultado.rows
     }
+
+    async buscarTodas(){
+        const query = 'SELECT * FROM liveCode.cerveja'
+        const resultado = await this.client.execute(query, [], {prepare: true})
+        return resultado.rows
+    }
 }
 
 module.exports = CassandraRepositorio
