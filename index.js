@@ -6,7 +6,7 @@ const CassandraRepositorio = require('./repositorio/cassandraRepositorio')
 const cassandraRepositorio = new CassandraRepositorio()
 const repositorioCerveja = new RepositorioCerveja()
 
-const servicoCerveja = new ServicoCerveja(cassandraRepositorio)
+const servicoCerveja = new ServicoCerveja(repositorioCerveja)
 
 
 fastify.get('/cervejas', async (request, reply) => {
@@ -54,7 +54,7 @@ fastify.delete('/cerveja/:id', async(req, res) =>{
 
 const start = async () => {
   try {
-    await fastify.listen(3000)
+    await fastify.listen(8080)
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
