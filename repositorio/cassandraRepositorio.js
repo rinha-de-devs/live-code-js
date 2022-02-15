@@ -28,6 +28,23 @@ class CassandraRepositorio {
         const resultado = await this.client.execute(query, [], {prepare: true})
         return resultado.rows
     }
+
+    async buscarCervejaPorId(id){
+        const query = 'SELECT * FROM liveCode.cerveja WHERE sku = ?'
+        const resultado = await this.client.execute(query, [id], {prepare: true})
+        return resultado.rows[0]
+    }
+
+    async alterarCerveja(cerveja){
+        const query = 'UPDATE liveCode.cerveja SET nome = ?, tipo = ?, quantidade = ?, '
+        const resultado = await this.client.execute(query, [cerveja.nome, cerveja.tipo, cerveja.quantidade], {prepare: true})
+        return resultado.rows[0]
+    }
+
+    async excluirCerveja(id){
+        const query = 'DELETE FROM liveCode.cerveja WHERE id = ?'
+        const resultado = await this.client.execute(query, [id], {prepare: true})
+    }
 }
 
 module.exports = CassandraRepositorio
