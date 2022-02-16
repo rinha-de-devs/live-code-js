@@ -78,3 +78,12 @@ Para rodar os testes:
 ```bash
 npm test
 ```
+
+### Docker
+
+Para criar uma imagem docker através do Dockerfile:
+
+```
+docker build . -t livecode
+docker run -d -p 8080:8080 livecode
+```
